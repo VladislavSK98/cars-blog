@@ -1,0 +1,57 @@
+.garage-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button.submit-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+  
+  button.submit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .garage-list {
+    margin-top: 30px;
+  }
+  
+  .garage-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .garage-list li {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  

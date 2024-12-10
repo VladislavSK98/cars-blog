@@ -1,0 +1,108 @@
+/* Основни стилове за контейнера */
+.container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header стилове */
+  header {
+    background-color: #0077b6; /* Miami Blue или Portimao Blue */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin: 0 1rem;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+    color: #ffdd57; /* Светъл жълт за hover ефект */
+  }
+  
+  /* Основно съдържание */
+  main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #8298a0; /* Светло сиво-син фон */
+  }
+  
+  .intro {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .featured-cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Карта на автомобила */
+  .car-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Леко по-силен сянка при hover */
+  }
+  
+  .car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #0077b6; /* Лента с цвета на заглавието */
+  }
+  
+  .car-details {
+    padding: 1rem;
+  }
+  
+  .car-details h3 {
+    margin: 0 0 1rem 0;
+    color: #0077b6;
+  }
+  
+  .car-details p {
+    color: #555;
+  }
+  
+  /* Footer стилове */
+  footer {
+    background-color: #0077b6; /* Същото синьо като заглавието */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
