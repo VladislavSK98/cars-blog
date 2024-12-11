@@ -9,16 +9,17 @@ import { MainComponent } from './main/main.component';
 import { CurrentThemeComponent } from './theme/current-theme/current-theme.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
+import { MyGarageComponent } from './my-garage/my-garage.component'; // Импортирай компонента за "My Garage"
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
 
-  //   Start - User routing
+  // Start - User routing
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  //   End - User routing
+  // End - User routing
 
   // Start - Theme routing
   {
@@ -41,6 +42,9 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   // End - Theme routing
+
+  // Add "My Garage" route
+  { path: 'my-garage', component: MyGarageComponent, canActivate: [AuthGuard] }, // Опция: Защита с AuthGuard
 
   { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },

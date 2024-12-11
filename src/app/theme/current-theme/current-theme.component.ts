@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FirebasePostService } from '../../services/firebase-post.service';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
 import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
@@ -8,7 +8,7 @@ import { HomeComponent } from '../../home/home.component';
 @Component({
   selector: 'app-current-theme',
   standalone: true,
-  imports: [HomeComponent, RouterModule],
+  imports: [HomeComponent],
   templateUrl: './current-theme.component.html',
   styleUrl: './current-theme.component.css',
 })
@@ -17,7 +17,7 @@ export class CurrentThemeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private firebasePostService: FirebasePostService,
+    private apiService: ApiService,
     private userService: UserService
   ) {}
 
@@ -32,7 +32,7 @@ export class CurrentThemeComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['themeId'];
 
-    this.firebasePostService.getSingleTheme(id).subscribe((theme) => {
+    this.apiService.getSingleTheme(id).subscribe((theme) => {
       this.theme = theme;
     });
   }

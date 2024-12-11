@@ -1,32 +1,17 @@
-<div class="home-container">
-    <h1>Добре дошли в автомобилния блог!</h1>
-    <p>Добавете автомобилите си или започнете да пускате постове!</p>
-  
-    <div class="navigation-buttons">
-      <button (click)="goToMyCars()">Моите автомобили</button>
-      <button (click)="goToPosts()">Публикации</button>
-    </div>
-  
-    <!-- Примерен списък с последните постове -->
-    <div class="latest-posts">
-      <h2>Последни публикации</h2>
-      <!-- Тук може да рендерирате последните постове -->
-      <ul>
-        <li>Публикация 1</li>
-        <li>Публикация 2</li>
-        <li>Публикация 3</li>
-      </ul>
-    </div>
-  
-    <!-- Примерен списък с последните автомобили -->
-    <div class="latest-cars">
-      <h2>Последни добавени автомобили</h2>
-      <!-- Тук може да рендерирате последните автомобили -->
-      <ul>
-        <li>BMW 320d</li>
-        <li>Audi A4</li>
-        <li>Mercedes-Benz C-Class</li>
-      </ul>
+<div class="container">
+  <div class="welcome">
+    <h1>Welcome to Cars Blog</h1>
+    <p>
+      Explore, share, and discuss your passion for cars. Publish your opinions,
+      share your rides, and engage with other car enthusiasts.
+    </p>
+    <div *ngIf="!isLoggedIn" class="auth-links">
+      <a routerLink="/login" class="btn">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+      <a routerLink="/register" class="btn">
+        <i class="fas fa-user-plus"></i> Register
+      </a>
     </div>
   </div>
-  
+</div>

@@ -1,34 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebasePostService } from '../services/firebase-post.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ApiService } from './../api.service';
+import { Post } from './../types/post';
+import { LoaderComponent } from './../shared/loader/loader.component';
+import { ElapsedTimePipe } from '../shared/pipes/elapsed-time.pipe';
 
 @Component({
   selector: 'app-posts-list',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [LoaderComponent, ElapsedTimePipe],
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.css',
 })
 export class PostsListComponent implements OnInit {
-  posts: any[] = [];
-  
-  constructor(private postService: FirebasePostService) {}
+  posts: Post[] = [];
+  isLoading = true;
 
-  ngOnInit() {
-    this.postService.getPost().subscribe(data => {
-      this.posts = Object.keys(data).map(key => ({id: key, ...data[key]}));
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.getPosts(5).subscribe((posts) => {
+      this.posts = posts;
+      this.isLoading = false;
     });
-  };
-
-  deletePost(postId: string) {
-    this.postService.deletePost(postId).subscribe(() => {
-      this.posts = this.posts.filter(post => post.id !== postId);
-      alert('Post deleted succesfully!');
-    })
   }
-
- }
-
-
+}

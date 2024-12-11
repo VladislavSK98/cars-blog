@@ -1,8 +1,5 @@
-<div *ngIf="isAuthenticating; else authenticatedContent">
-    <app-loader></app-loader>
-  </div>
-  
-  <ng-template #authenticatedContent>
-    <ng-content></ng-content>
-  </ng-template>
-  
+@if(isAuthenticating){
+<app-loader />
+} @else {
+<ng-content />
+}

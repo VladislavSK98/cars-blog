@@ -1,40 +1,32 @@
 <header>
-  <div class="mini-navbar-wrap">
+  <div class="navbar">
     <div class="logo-wrap">
-      <img src="logo.png" />
-      <p class="logo"><span class="logo">SoftUni Forum</span></p>
+      <img src="logo.png" alt="Cars Blog Logo" class="logo-image" />
+      <span class="logo-text">Cars Blog</span>
     </div>
-    <div class="mini-navbar">
+    <div class="user-actions">
       <ul>
-        @if(isLoggedIn){
-        <li class="user-profile-btn">
-          <a routerLink="/profile">{{ username }}'s profile</a>
+        <li *ngIf="isLoggedIn">
+          <a routerLink="/profile">{{ username }}'s Profile</a>
         </li>
-        <li>
+        <li *ngIf="isLoggedIn">
           <a (click)="logout()">Logout</a>
         </li>
-        } @else {
-        <li>
+        <li *ngIf="!isLoggedIn">
           <a routerLink="/login">Login</a>
         </li>
-        <li>
+        <li *ngIf="!isLoggedIn">
           <a routerLink="/register">Register</a>
         </li>
-        }
       </ul>
     </div>
   </div>
   <nav>
-    <ul>
-      <li>
-        <a routerLink="/home">Home</a>
-      </li>
-      <li>
-        <a routerLink="/themes">Themes</a>
-      </li>
-      <li>
-        <a routerLink="/add-theme">New Theme</a>
-      </li>
+    <ul class="nav-links">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/my-garage">My Garage</a></li>
+      <li><a routerLink="/blog">Blog</a></li>
+      <li><a routerLink="/add-post">New Post</a></li>
     </ul>
   </nav>
 </header>

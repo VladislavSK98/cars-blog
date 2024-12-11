@@ -9,19 +9,16 @@ import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../constants';
 import { ProfileDetails } from '../../types/user';
 import { UserService } from '../user.service';
-import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
   isEditMode: boolean = false;
-  isLoading: boolean = true;
-  error: string | null = null;
 
   profileDetails: ProfileDetails = {
     username: '',
@@ -38,21 +35,10 @@ export class ProfileComponent implements OnInit {
     tel: new FormControl(''),
   });
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    const user = this.userService.user;
-
-    if (!user) {
-      this.error = 'No user is currently logged in.';
-      this.isLoading = false;
-
-      // Пренасочване към страница за вход
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    const { username, email, tel } = user;
+    const { username, email, tel } = this.userService.user!;
     this.profileDetails = { username, email, tel: tel! };
 
     this.form.setValue({
@@ -60,8 +46,6 @@ export class ProfileComponent implements OnInit {
       email,
       tel: tel!,
     });
-
-    this.isLoading = false;
   }
 
   toggleEditMode() {
@@ -77,11 +61,8 @@ export class ProfileComponent implements OnInit {
 
     const { username, email, tel } = this.profileDetails;
 
-    this.userService.updateProfile(username, email, tel).subscribe({
-      next: () => this.toggleEditMode(),
-      error: (err) => {
-        this.error = 'Failed to update profile: ' + err.message;
-      },
+    this.userService.updateProfile(username, email, tel).subscribe(() => {
+      this.toggleEditMode();
     });
   }
 

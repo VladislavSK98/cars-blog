@@ -1,57 +1,74 @@
 .garage-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button.submit-btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.2em;
-  }
-  
-  button.submit-btn:hover {
-    background-color: #45a049;
-  }
-  
-  .garage-list {
-    margin-top: 30px;
-  }
-  
-  .garage-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .garage-list li {
-    font-size: 1.2em;
-    margin: 10px 0;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.car-list {
+  margin-bottom: 30px;
+}
+
+.car-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.car-item p {
+  margin: 5px 0;
+}
+
+.car-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.car-form h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.car-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.car-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.car-form input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.car-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.car-form button:hover {
+  background-color: #0056b3;
+}

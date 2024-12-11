@@ -1,10 +1,8 @@
-<div *ngIf="isLoggedIn; else showHome">
-  <div class="container">
-    <app-themes-list />
-    <app-posts-list />
-  </div>
+@if (isLoggedIn) {
+<div class="container">
+  <app-themes-list />
+  <app-posts-list />
 </div>
-
-<ng-template #showHome>
-  <app-home></app-home>
-</ng-template>
+} @else {
+<app-home />
+}

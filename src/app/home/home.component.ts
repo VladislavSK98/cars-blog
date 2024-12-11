@@ -1,25 +1,19 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { UserService } from '../user/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports:[RouterModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
-
-  constructor(private router: Router) {}
-
-  // Навигация към страницата с автомобили
-  goToMyCars() {
-    this.router.navigate(['/my-garage']); // Предполага се, че имате страница за автомобили
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
   }
 
-  // Навигация към страницата за публикации
-  goToPosts() {
-    this.router.navigate(['/posts']); // Предполага се, че имате страница за постове
-  }
-
+  constructor(private userService: UserService) {}
 }
