@@ -1,0 +1,7 @@
+<div *ngIf="isLoading" class="loader">Loading car details...</div>
+<div *ngIf="!isLoading">
+  <h1>{{ car.make }} {{ car.model }}</h1>
+  <p>Year: {{ car.year }}</p>
+  <p>Horsepower: {{ car.power }} HP</p>
+  <p>Color: {{ car.color }}</p>
+</div>

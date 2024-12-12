@@ -6,7 +6,7 @@ const themes = require('./themes');
 const posts = require('./posts');
 const likes = require('./likes');
 const test = require('./test');
-const cars = require('./cars');  // Импортираме рутера за автомобилите
+const cars = require('./cars');  
 const { authController } = require('../controllers');
 
 router.post('/register', authController.register);
@@ -18,6 +18,6 @@ router.use('/themes', themes);
 router.use('/posts', posts);
 router.use('/likes', likes);
 router.use('/test', test);
-router.use('/cars', cars);  // Добавяме маршрута за автомобили
+router.use('/cars', cars);  
 
 module.exports = router;

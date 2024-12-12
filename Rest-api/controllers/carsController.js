@@ -1,27 +1,23 @@
-const { carModel } = require('../models/carModel');
-const { userModel } = require('../models/userModel');
+const { carModel, userModel } = require('../models');
 
-// Създаване на нов автомобил
-function createCar(req, res, next) {
-    const { userId, make, model, year, power } = req.body;
+// Добавяне на нов автомобил
+function addCar(req, res, next) {
+    const { _id: userId } = req.user;
+    const { make, model, year, power } = req.body;
 
-    carModel.create({ userId, make, model, year, power })
+    carModel.create({ make, model, year, power, userId })
         .then(car => {
-            return userModel.findByIdAndUpdate(
-                userId, 
-                { $push: { cars: car._id } },
-                { new: true }
-            );
+            return userModel.updateOne(
+                { _id: userId },
+                { $push: { cars: car._id } }
+            ).then(() => res.status(201).json(car));
         })
-        .then(updatedUser => res.status(201).json(updatedUser))
         .catch(next);
 }
 
-// Получаване на всички автомобили на потребител
-function getUserCars(req, res, next) {
+// Извличане на всички автомобили на потребител
+function getCars(req, res, next) {
     const { userId } = req.params;
-
-    console.log('Request received for userId:', userId);
 
     carModel.find({ userId })
         .then(cars => res.status(200).json(cars))
@@ -31,15 +27,19 @@ function getUserCars(req, res, next) {
 // Редактиране на автомобил
 function editCar(req, res, next) {
     const { carId } = req.params;
-    const { make, model, year, power } = req.body;
     const { _id: userId } = req.user;
+    const { make, model, year, power } = req.body;
 
-    carModel.findOneAndUpdate({ _id: carId, userId }, { make, model, year, power }, { new: true })
+    carModel.findOneAndUpdate(
+        { _id: carId, userId },
+        { make, model, year, power },
+        { new: true }
+    )
         .then(updatedCar => {
             if (updatedCar) {
                 res.status(200).json(updatedCar);
             } else {
-                res.status(401).json({ message: 'Not allowed to edit this car!' });
+                res.status(401).json({ message: 'Not allowed!' });
             }
         })
         .catch(next);
@@ -53,17 +53,35 @@ function deleteCar(req, res, next) {
     carModel.findOneAndDelete({ _id: carId, userId })
         .then(deletedCar => {
             if (deletedCar) {
-                res.status(200).json(deletedCar);
+                return userModel.updateOne(
+                    { _id: userId },
+                    { $pull: { cars: carId } }
+                ).then(() => res.status(200).json(deletedCar));
             } else {
-                res.status(401).json({ message: 'Not allowed to delete this car!' });
+                res.status(401).json({ message: 'Not allowed!' });
             }
         })
         .catch(next);
 }
 
+// Харесване на автомобил
+function likeCar(req, res, next) {
+    const { carId } = req.params;
+    const { _id: userId } = req.user;
+
+    carModel.updateOne(
+        { _id: carId },
+        { $addToSet: { likes: userId } },
+        { new: true }
+    )
+        .then(() => res.status(200).json({ message: 'Car liked successfully!' }))
+        .catch(next);
+}
+
 module.exports = {
-    createCar,
-    getUserCars,
+    addCar,
+    getCars,
     editCar,
     deleteCar,
+    likeCar,
 };

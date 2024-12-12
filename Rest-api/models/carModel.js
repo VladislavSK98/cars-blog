@@ -19,6 +19,11 @@ const carSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    color: {
+        type: String,
+        required: true
+    },
+
     userId: {
         type: ObjectId,
         ref: "User",  // Отнася се към потребителя, който притежава колата
@@ -31,4 +36,6 @@ const carSchema = new mongoose.Schema({
 }, { timestamps: { createdAt: 'created_at' } });  // Автоматично ще добавя полета за създаване и актуализиране
 
 // Създаване на модел за автомобил
-module.exports = mongoose.model('Car', carSchema);
+const Car = mongoose.model('Car', carSchema);
+
+module.exports = Car;

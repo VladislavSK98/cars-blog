@@ -1,0 +1,29 @@
+/* blog.component.css */
+.garage-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .car-list {
+    margin-bottom: 30px;
+  }
+  
+  .car-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car-item p {
+    margin: 5px 0;
+  }
+  

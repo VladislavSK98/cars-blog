@@ -9,7 +9,11 @@ import { MainComponent } from './main/main.component';
 import { CurrentThemeComponent } from './theme/current-theme/current-theme.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
-import { MyGarageComponent } from './my-garage/my-garage.component'; // Импортирай компонента за "My Garage"
+import { MyGarageComponent } from './my-garage/my-garage.component'; 
+import { BlogComponent } from './blog/blog.component';
+import { NewPostComponent } from './new-post/new-post.component';
+import { CarsComponent } from './cars/cars.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -43,10 +47,11 @@ export const routes: Routes = [
   },
   // End - Theme routing
 
-  // Add "My Garage" route
-  { path: 'my-garage', component: MyGarageComponent, canActivate: [AuthGuard] }, // Опция: Защита с AuthGuard
-
-  { path: 'error', component: ErrorMsgComponent },
-  { path: '404', component: PageNotFoundComponent },
+  { path: 'my-garage', component:MyGarageComponent},
+  { path: 'blog', component: BlogComponent },
+  { path: 'add-post', component: NewPostComponent, canActivate: [AuthGuard] },
+  { path: 'cars', component: CarsComponent },
+  { path: 'cars/:id', component: CarDetailsComponent},
+  { path: '404', component: PageNotFoundComponent },  
   { path: '**', redirectTo: '/404' },
 ];

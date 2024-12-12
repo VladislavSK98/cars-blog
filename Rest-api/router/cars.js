@@ -1,18 +1,32 @@
-const express = require('express');
-const router = express.Router();
-const { carsController } = require('../controllers');
-const { auth } = require('../utils');
+// restApi/router/cars.js
 
-// Създаване на нов автомобил
-router.post('/', auth(), carsController.createCar);
+const router = require('express').Router();
+const { carModel } = require('../models');
 
-// Получаване на всички автомобили на потребителя
-router.get('/:userId', auth(), carsController.getUserCars);
+// Добавяне на нов автомобил за потребител
+router.post('/:userId', async (req, res) => {
+  const { make, model, year, power } = req.body;
+  const { userId } = req.params;  // Вземаме userId от URL
 
-// Редактиране на автомобил
-router.put('/:carId', auth(), carsController.editCar);
+  try {
+    const newCar = new carModel({ make, model, year, power, userId });
+    await newCar.save();
+    res.status(201).json(newCar);
+  } catch (err) {
+    res.status(500).json({ message: "Error adding car", error: err });
+  }
+});
 
-// Изтриване на автомобил
-router.delete('/:carId', auth(), carsController.deleteCar);
+// Получаване на всички автомобили за даден потребител
+router.get('/:userId', async (req, res) => {
+  const { userId } = req.params;  // Вземаме userId от URL
+
+  try {
+    const cars = await carModel.find({ userId });
+    res.status(200).json(cars);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching cars", error: err });
+  }
+});
 
 module.exports = router;

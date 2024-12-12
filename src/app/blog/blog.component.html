@@ -1,0 +1,9 @@
+<div *ngIf="isLoading" class="loader">Loading posts...</div>
+<div *ngIf="!isLoading">
+  <h1>Blog Posts</h1>
+  <div *ngFor="let post of posts" class="car-item">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <span>By: {{ post.author }}</span>
+  </div>
+</div>

@@ -1,33 +1,38 @@
 <div class="garage-container">
-  <h2>Your Garage</h2>
+    <h2>Your Garage</h2>
+  
+    <!-- Списък с автомобили -->
+    <div class="car-card">
+      <div *ngFor="let car of cars" class="car-item">
+        <p><strong>Make:</strong> {{ car.make }}</p>
+        <p><strong>Model:</strong> {{ car.model }}</p>
+        <p><strong>Year:</strong> {{ car.year }}</p>
+        <p><strong>Power:</strong> {{ car.power }} HP</p>
+        <p><strong>Color:</strong> {{car.color}} </p>
+      </div>
+    </div>
+  
+    <!-- Форма за добавяне на нов автомобил -->
+    <div class="car-form">
+      <h3>Add a new car</h3>
+      <form (ngSubmit)="onSubmit()">
+        <label for="make">Make:</label>
+        <input type="text" id="make" [(ngModel)]="newCar.make" name="make" required />
+  
+        <label for="model">Model:</label>
+        <input type="text" id="model" [(ngModel)]="newCar.model" name="model" required />
+  
+        <label for="year">Year:</label>
+        <input type="text" id="year" [(ngModel)]="newCar.year" name="year" required />
+  
+        <label for="power">Power (HP):</label>
+        <input type="text" id="power" [(ngModel)]="newCar.power" name="power" required />
 
-  <!-- Списък с автомобили -->
-  <div class="car-list">
-    <div *ngFor="let car of cars" class="car-item">
-      <p><strong>Make:</strong> {{ car.make }}</p>
-      <p><strong>Model:</strong> {{ car.model }}</p>
-      <p><strong>Year:</strong> {{ car.year }}</p>
-      <p><strong>Power:</strong> {{ car.power }} HP</p>
+        <label for="color">Color:</label>
+        <input type="text" id="color" [(ngModel)]="newCar.color" name="color" required />
+  
+        <button type="submit">Add Car</button>
+      </form>
     </div>
   </div>
-
-  <!-- Форма за добавяне на нов автомобил -->
-  <div class="car-form">
-    <h3>Add a new car</h3>
-    <form (ngSubmit)="onSubmit()">
-      <label for="make">Make:</label>
-      <input type="text" id="make" [(ngModel)]="newCar.make" name="make" required />
-
-      <label for="model">Model:</label>
-      <input type="text" id="model" [(ngModel)]="newCar.model" name="model" required />
-
-      <label for="year">Year:</label>
-      <input type="text" id="year" [(ngModel)]="newCar.year" name="year" required />
-
-      <label for="power">Power (HP):</label>
-      <input type="text" id="power" [(ngModel)]="newCar.power" name="power" required />
-
-      <button type="submit">Add Car</button>
-    </form>
-  </div>
-</div>
+  

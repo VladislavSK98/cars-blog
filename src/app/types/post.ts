@@ -4,6 +4,9 @@ import { User } from './user';
 export interface Post {
   likes: string[];
   _id: string;
+  title: string, 
+  content: string,
+  author: string,
   text: string;
   userId: User;
   themeId: Theme;
