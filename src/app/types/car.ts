@@ -1,14 +1,14 @@
-import { UserForAuth } from './user';
+import { User } from './user';
 
 export interface Car {
-  id: string; // Добавено поле id
-  _id: string; // Ако използвате _id за генериране на ID от сървъра
+  id: string;
+  _id: string;
   make: string;
   model: string;
   year: string;
   power: string;
   color: string;
-  userId: UserForAuth;
+  userId: User; 
   owner: string;
   price: number;
 }

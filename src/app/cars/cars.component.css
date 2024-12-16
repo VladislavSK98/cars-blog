@@ -1,29 +1,76 @@
-/* cars.component.css */
-.garage-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .car-list {
-    margin-bottom: 30px;
-  }
-  
-  .car-item {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .car-item p {
-    margin: 5px 0;
-  }
-  
+/* Основни стилове за страницата */
+.cars-title {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 0 10px;
+}
+
+.car-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.car-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.car-title {
+  font-size: 1.5em;
+  color: #333;
+  margin: 0;
+}
+
+.car-details {
+  font-size: 1.1em;
+  color: #666;
+  margin: 10px 0;
+}
+
+.car-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-details {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-details:hover {
+  background-color: #003f78;
+}
+
+.btn-like {
+  background-color: #ffcc00;
+  color: white;
+  border: none;
+}
+
+.btn-like:hover {
+  background-color: #e6b800;
+}

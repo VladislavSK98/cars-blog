@@ -47,7 +47,7 @@ export const routes: Routes = [
   },
   // End - Theme routing
 
-  { path: 'my-garage', component:MyGarageComponent},
+  { path: 'my-garage', component: MyGarageComponent},
   { path: 'blog', component: BlogComponent },
   { path: 'add-post', component: NewPostComponent, canActivate: [AuthGuard] },
   { path: 'cars', component: CarsComponent },

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../utils');
-const { postController } = require('../controllers');
+const { carsController} = require('../controllers');
 
 // middleware that is specific to this router
 
-router.put('/:postId', auth(), postController.like);
+router.put('/cars/:carId/like', auth(), carsController.likeCar);
 
 module.exports = router

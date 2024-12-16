@@ -41,4 +41,8 @@ function auth(redirectUnauthenticated = true) {
     }
 }
 
+function getUserIdFromRequest(req) {
+    return req.user ? req.user._id : null; // Връща _id на потребителя от req.user
+}
+
 module.exports = auth;

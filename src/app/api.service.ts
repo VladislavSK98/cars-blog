@@ -4,6 +4,7 @@ import { Post } from './types/post';
 import { Theme } from './types/theme';
 import { Car } from './types/car';
 import { Observable } from 'rxjs';  
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,22 +12,10 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  
-  getCars() {
-    return this.http.get<Car[]>('/api/cars'); 
-  }
 
-  addCar(car: Car) {
-    return this.http.post<Car>('/api/cars', car);  
-  }
-
-  getPosts(limit?: number) {
-    let url = `/api/posts`;
-    if (limit) {
-      url += `?limit=${limit}`;
-    }
-
-    return this.http.get<Post[]>(url);
+  getPosts() {
+    const { apiUrl } = environment;
+    return this.http.get<Post[]>(`${apiUrl}/posts`);
   }
 
   getThemes() {
@@ -54,10 +43,6 @@ export class ApiService {
 
   deletePost(themeId: string, postId: string) {
     return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
-  }
-
-  getCarsByUser(userId: string): Observable<Car[]> {
-    return this.http.get<Car[]>(`/api/cars/${userId}`);
   }
 
   getAllPosts(): Observable<Post[]> {

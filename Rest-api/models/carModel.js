@@ -17,25 +17,27 @@ const carSchema = new mongoose.Schema({
     },
     power: {
         type: String,
-        required: true
+        required: false
+       
     },
     color: {
         type: String,
-        required: true
+        required: false
+        
     },
 
     userId: {
         type: ObjectId,
-        ref: "User",  // Отнася се към потребителя, който притежава колата
+        ref: "User",  
         required: true
     },
     likes: [{
         type: ObjectId,
-        ref: "User"  // Отнася се към потребителите, които са харесали автомобила
+        ref: "User"  
     }]
-}, { timestamps: { createdAt: 'created_at' } });  // Автоматично ще добавя полета за създаване и актуализиране
+}, { timestamps: { createdAt: 'created_at' } });  
 
-// Създаване на модел за автомобил
+
 const Car = mongoose.model('Car', carSchema);
 
 module.exports = Car;

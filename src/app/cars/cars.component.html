@@ -1,9 +1,16 @@
 <div *ngIf="isLoading" class="loader">Loading cars...</div>
+
 <div *ngIf="!isLoading">
-  <h1>Cars</h1>
-  <div *ngFor="let car of cars" class="car">
-    <h2>{{ car.make }} {{ car.model }}</h2>
-    <p>Horsepower: {{ car.power }}</p>
-    <a [routerLink]="'/cars/' + car.id">View Details</a>
+  <h1 class="cars-title">Cars</h1>
+  <div class="cars-grid">
+    <div *ngFor="let car of cars" class="car-card">
+      <h2 class="car-title">{{ car.make }} {{ car.model }}</h2>
+      <p class="car-details">Horsepower: {{ car.power }}</p>
+      <p class="car-details">Color: {{ car.color }}</p>
+      <div class="car-actions">
+        <a [routerLink]="'/cars/' + car.id" class="btn btn-details">View Details</a>
+        <button class="btn btn-like" (click)="likeCar(car.id)">Like Car</button>
+      </div>
+    </div>
   </div>
 </div>

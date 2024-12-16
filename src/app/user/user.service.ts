@@ -21,12 +21,7 @@ export class UserService implements OnDestroy {
   constructor(private http: HttpClient) {
     this.userSubscription = this.user$.subscribe((user) => {
       this.user = user;
-      console.log('User loaded:', this.user);
     });
-  }
-
-  getUserObservable() {
-    return this.user$$.asObservable();
   }
 
   login(email: string, password: string) {
@@ -57,6 +52,15 @@ export class UserService implements OnDestroy {
     return this.http
       .post('/api/logout', {})
       .pipe(tap((user) => this.user$$.next(null)));
+  }
+
+
+  getUserObservable() {
+    return this.user$;
+  }
+  
+  getUser() {
+    return this.user;
   }
 
   getProfile() {
