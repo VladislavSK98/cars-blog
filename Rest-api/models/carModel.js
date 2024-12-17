@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 
-// Създаване на схема за автомобил
 const carSchema = new mongoose.Schema({
     make: {
         type: String,
@@ -22,7 +21,7 @@ const carSchema = new mongoose.Schema({
     },
     color: {
         type: String,
-        required: false
+        required: true,
         
     },
 

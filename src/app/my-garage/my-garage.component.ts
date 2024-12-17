@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../services/car.service';
-import { UserService } from '../user/user.service';  // Импортиране на UserService
+import { UserService } from '../user/user.service';  
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ import { User } from '../types/user';
 })
 export class MyGarageComponent implements OnInit {
   cars: Car[] = [];
-  userId: string | null = null;  // Декларираме променлива за userId
+  userId: string | null = null;  
   newCar: Car = {
     id: '',
     _id: '',
@@ -25,29 +25,29 @@ export class MyGarageComponent implements OnInit {
     year: '',
     power: '',
     color: '',
-    userId: {} as User,  // Начално задаваме userId като празен обект от тип User
+    userId: {} as User,  
     owner: '',
     price: 0,
   };
 
   constructor(
     private carService: CarService,
-    private userService: UserService,  // Инжектиране на UserService
+    private userService: UserService,  
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.userService.getUserObservable().subscribe((user) => {
       if (user) {
-        this.userId = user._id;  // Извличаме userId от текущия потребител
-        this.loadCars();  // Зареждаме автомобилите, след като имаме userId
+        this.userId = user._id; 
+        this.loadCars();  
       }
     });
   }
 
   loadCars() {
     if (!this.userId) {
-      return;  // Ако няма userId, не изпълняваме заявката
+      return;  
     }
     this.carService.getCarsByUser(this.userId).subscribe((cars) => {
       this.cars = cars;
@@ -56,17 +56,20 @@ export class MyGarageComponent implements OnInit {
 
   onSubmit() {
     if (this.newCar.make && this.newCar.model && this.newCar.year && this.userId && this.newCar.color && this.newCar.power) {
-      this.newCar.userId = { _id: this.userId } as User;  // Задаваме правилното userId
+      this.newCar.userId = { _id: this.userId } as User;  
       this.carService.addCar(this.newCar).subscribe((car) => {
         this.cars.push(car);
-        this.newCar = { id: '', _id: '', make: '', model: '', year: '', power: '', color: '', userId: {} as User, owner: '', price: 0 }; // Изчистваме формата
+        this.newCar = { id: '', _id: '', make: '', model: '', year: '', power: '', color: '', userId: {} as User, owner: '', price: 0 }; 
       });
     }
   }
 
   deleteCar(carId: string) {
-    this.carService.deleteCar(carId).subscribe(() => {
-      this.cars = this.cars.filter(car => car.id !== carId); // Премахваме изтрития автомобил от списъка
-    });
+    // Изтриваме автомобила
+    if (confirm('Are you sure you want to delete this car?')) {
+      this.carService.deleteCar(carId).subscribe(() => {
+        this.cars = this.cars.filter(car => car._id !== carId);  
+      });
+    }
   }
 }

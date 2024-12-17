@@ -25,9 +25,9 @@ export class CarService {
     return this.http.post<Car>(this.apiUrl, car);
   }
 
-  updateCar(carId: string, updatedCar: Partial<Car>): Observable<Car> {
-    return this.http.put<Car>(`${this.apiUrl}/${carId}`, updatedCar);
-  }
+  // updateCar(carId: string, updatedCar: Partial<Car>): Observable<Car> {
+  //   return this.http.put<Car>(`${this.apiUrl}/${carId}`, updatedCar);
+  // }
 
   deleteCar(carId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${carId}`);
@@ -38,7 +38,21 @@ export class CarService {
   }
 
   // Метод за харесване на кола
-  likeCar(carId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${carId}/like`, {});
+  likeCar(carId: string) {
+    return this.http.put(`${this.apiUrl}/${carId}/like`, {}); 
   }
+
+  getCarById(carId: string): Observable<Car> {
+    return this.http.get<Car>(`${this.apiUrl}/${carId}`);
+  }
+  
+  updateCar(carId: string, updatedCar: Partial<Car>): Observable<Car> {
+    return this.http.put<Car>(`${this.apiUrl}/${carId}/edit`, updatedCar);
+  }
+
+  getCarDetails(carId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${carId}`);
+  }
+  
+  
 }

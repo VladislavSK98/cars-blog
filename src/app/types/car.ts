@@ -11,4 +11,5 @@ export interface Car {
   userId: User; 
   owner: string;
   price: number;
+  likesCount?: number;
 }

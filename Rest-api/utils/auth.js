@@ -19,6 +19,9 @@ function auth(redirectUnauthenticated = true) {
                 }
                 userModel.findById(data.id)
                     .then(user => {
+                        if (!user) {
+                            return Promise.reject(new Error('User not found'));
+                        }
                         req.user = user;
                         req.isLogged = true;
                         next();

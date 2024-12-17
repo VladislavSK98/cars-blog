@@ -18,6 +18,10 @@ const postSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Theme"
     },
+    comments: [{
+        userId: { type: ObjectId, ref: "User" },
+        text: { type: String, required: true }
+    }]
 }, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('Post', postSchema);

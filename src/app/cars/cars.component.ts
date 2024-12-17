@@ -29,14 +29,15 @@ export class CarsComponent {
   }
 
   likeCar(carId: string) {
-    this.carService.likeCar(carId).subscribe(
-      () => {
-        // Успешно харесана кола, можеш да покажеш съобщение или да обновиш списъка
-        console.log(`Car with ID ${carId} liked successfully!`);
+    console.log('Car ID:', carId);
+    this.carService.likeCar(carId).subscribe({
+      next: (response) => {
+        console.log('Car liked successfully', response);
+        this.loadCars(); // Презареди списъка с коли
       },
-      (error) => {
-        console.error('Error liking car:', error);
-      }
-    );
+      error: (err) => {
+        console.error('Error liking the car', err);
+      },
+    });
   }
 }

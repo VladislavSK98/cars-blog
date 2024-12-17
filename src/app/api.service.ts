@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-
+  // Съществуващи методи за постове и теми
   getPosts() {
     const { apiUrl } = environment;
     return this.http.get<Post[]>(`${apiUrl}/posts`);
@@ -20,6 +20,14 @@ export class ApiService {
 
   getThemes() {
     return this.http.get<Theme[]>(`/api/themes`);
+  }
+
+  getPostById(postId: string): Observable<any> {
+    return this.http.get<any>(`/api/posts/${postId}`);
+  }
+
+  createPost(postData: any): Observable<any> {
+    return this.http.post<any>('/api/posts', postData);
   }
 
   getSingleTheme(id: string) {
@@ -48,17 +56,37 @@ export class ApiService {
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>('/api/posts');
   }
-  
+
   addPost(postData: { title: string; content: string }): Observable<Post> {
     return this.http.post<Post>('/api/posts', postData);
   }
-  
+
+  getLatestPosts(limit: number = 0) {
+    return this.http.get<Post[]>(`/api/posts?limit=${limit}`);
+  }
+
   getAllCars(): Observable<Car[]> {
     return this.http.get<Car[]>('/api/cars');
   }
-  
+
   getCarDetails(carId: string): Observable<Car> {
     return this.http.get<Car>(`/api/cars/${carId}`);
-}
+  }
 
+  // Добавяне на нови методи за коментари
+
+  // Получаване на коментари за даден пост
+  getComments(postId: string): Observable<any[]> {
+    return this.http.get<any[]>(`/api/posts/${postId}/comments`);
+  }
+
+  getPost(postId: string): Observable<any> {
+    return this.http.get<any>(`/api/posts/${postId}`);
+  }
+  
+
+  // Добавяне на нов коментар към даден пост
+  addComment(comment: { text: string; postId: string }): Observable<any> {
+    return this.http.post<any>(`/api/posts/${comment.postId}/comments`, { text: comment.text });
+  }
 }

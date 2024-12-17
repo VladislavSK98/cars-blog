@@ -11,18 +11,26 @@ function newCar(make, model, year, userId, power, color) {
 }
 
 function getCarsByUserId(req, res, next) {
-    const { userId } = req.params;  // Извличаме userId от URL
+    const { userId } = req.params;  
     carModel.find({ userId })
-        .populate('userId', 'username')  // Попълваме потребителското име, ако е необходимо
+        .populate('userId', 'username')  
         .then(cars => res.status(200).json(cars))
         .catch(next);
 }
 
 function getAllCars(req, res, next) {
     carModel.find()
-        .populate('userId', 'username') // Попълване на информация за потребителя, ако е необходимо
-        .then(cars => res.status(200).json(cars))
-        .catch(next);
+        .populate('userId', 'username') 
+        .then(cars => 
+            {
+                const carsWithLikes = cars.map(car => ({
+                    ...car.toObject(),
+                    likesCount: car.likes.length, 
+                }));
+                res.status(200).json(carsWithLikes);
+            })
+            .catch(next);
+            
 }
 
 function createCar(req, res, next) {
@@ -64,9 +72,29 @@ function deleteCar(req, res, next) {
     ])
         .then(([deletedCar]) => {
             if (deletedCar) {
-                res.status(200).json(deletedCar);
+                res.status(200).json({ message: 'Car deleted successfully!' });
             } else {
                 res.status(401).json({ message: 'Not allowed!' });
+            }
+        })
+        .catch(next);
+}
+
+function getCarDetails(req, res, next) {
+    const { carId } = req.params;
+
+    carModel.findById(carId)  // Намираме колата по ID
+        .then(car => {
+            if (car) {
+                // Добавяме броя на харесванията в обекта на колата
+                const carWithLikes = {
+                    ...car.toObject(),
+                    likesCount: car.likes.length,  // Броя на харесванията
+                };
+
+                res.status(200).json(carWithLikes);  // Връщаме колата с броя на харесванията
+            } else {
+                res.status(404).json({ message: 'Car not found' });
             }
         })
         .catch(next);
@@ -86,16 +114,15 @@ function deleteCar(req, res, next) {
 // }
 
 function likeCar(req, res, next) {
-    const { carId } = req.params; // Вземаме carId от параметрите
-    const { _id: userId } = req.user; // Вземаме userId от аутентикирания потребител
+    const { carId } = req.params; 
+    const { _id: userId } = req.user; 
   
-    // Извършваме актуализация на колата с добавяне на userId към likes масива
     carModel.updateOne(
       { _id: carId },
-      { $addToSet: { likes: userId } } // $addToSet добавя потребителя в likes само ако не е вече там
+      { $addToSet: { likes: userId } } 
     )
     .then(() => res.status(200).json({ message: 'Car liked successfully!' }))
-    .catch(next); // При грешка изпращаме към следващото middleware (например за обработка на грешки)
+    .catch(next); 
   }
 
 module.exports = {
@@ -106,4 +133,5 @@ module.exports = {
     deleteCar,
     likeCar,
     getCarsByUserId,
+    getCarDetails,
 };

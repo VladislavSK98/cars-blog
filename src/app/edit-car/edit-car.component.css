@@ -1,0 +1,72 @@
+/* Основен контейнер */
+.edit-car-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Заглавие */
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Стил за формата за редактиране на колата */
+  .edit-car-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .edit-car-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .edit-car-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .edit-car-form input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .edit-car-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .edit-car-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* За малки екрани */
+  @media (max-width: 768px) {
+    .edit-car-form {
+      grid-template-columns: 1fr;
+    }
+  
+    .edit-car-form button {
+      width: 100%;
+    }
+  }
+  

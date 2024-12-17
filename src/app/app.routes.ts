@@ -14,6 +14,8 @@ import { BlogComponent } from './blog/blog.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { CarsComponent } from './cars/cars.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
+import { EditCarComponent } from './edit-car/edit-car.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -51,7 +53,10 @@ export const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'add-post', component: NewPostComponent, canActivate: [AuthGuard] },
   { path: 'cars', component: CarsComponent },
+  { path: 'cars/:carId/edit', component: EditCarComponent},
+  { path: 'cars/:carId/details', component: CarDetailsComponent },
   { path: 'cars/:id', component: CarDetailsComponent},
+  { path: 'blog/:id', component: PostDetailsComponent },
   { path: '404', component: PageNotFoundComponent },  
   { path: '**', redirectTo: '/404' },
 ];

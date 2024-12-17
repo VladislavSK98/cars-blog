@@ -1,29 +1,28 @@
-import { Component, } from '@angular/core';
-import { ApiService } from '../api.service';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-new-post',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.css'],
+  styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent {
-  title = '';
-  content = '';
+  postData = {
+    title: '',
+    text: '',
+    author: 'User',  
+  };
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  createPost() {
-    if (this.title && this.content) {
-      this.apiService
-        .addPost({ title: this.title, content: this.content })
-        .subscribe(() => {
-          this.router.navigate(['/blog']);
-        });
-    }
+  onSubmit(): void {
+    this.apiService.createPost(this.postData).subscribe(() => {
+      this.router.navigate(['/blog']);
+    });
   }
 }

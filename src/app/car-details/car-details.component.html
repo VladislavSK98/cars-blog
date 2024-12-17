@@ -1,7 +1,13 @@
-<div *ngIf="isLoading" class="loader">Loading car details...</div>
-<div *ngIf="!isLoading">
-  <h1>{{ car.make }} {{ car.model }}</h1>
-  <p>Year: {{ car.year }}</p>
-  <p>Horsepower: {{ car.power }} HP</p>
-  <p>Color: {{ car.color }}</p>
+<div class="car-details-container">
+  <h2>Car Details</h2>
+
+  <div *ngIf="car" class="car-details-card">
+    <p><strong>Make:</strong> {{ car.make }}</p>
+    <p><strong>Model:</strong> {{ car.model }}</p>
+    <p><strong>Year:</strong> {{ car.year }}</p>
+    <p><strong>Power:</strong> {{ car.power }} HP</p>
+    <p><strong>Color:</strong> {{ car.color }}</p>
+    <p><strong>Likes:</strong> {{ car.likesCount }}</p>
+    <p><strong>Description:</strong> {{ car.description || 'No description available' }}</p>
+  </div>
 </div>

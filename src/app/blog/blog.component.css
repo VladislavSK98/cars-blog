@@ -1,29 +1,89 @@
-/* blog.component.css */
-.garage-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .car-list {
-    margin-bottom: 30px;
-  }
-  
-  .car-item {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .car-item p {
-    margin: 5px 0;
-  }
-  
+/* Основни стилове за контейнера на блога */
+.blog-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif; /* Примерен шрифт, можеш да го промениш */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/* Заглавието на блога */
+.blog-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Списък с публикации */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Стилове за всяка публикация */
+.post-item {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-5px); /* Леко повдигане при hover */
+}
+
+/* Стил за заглавието на публикацията */
+.post-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Стилове за името на потребителя */
+.post-item p strong {
+  font-size: 1.1rem; /* Увеличаваме шрифта за името */
+  color: #007bff;
+}
+
+.post-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Стилове за линка 'Read More' */
+.post-item a.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.post-item a.btn:hover {
+  background-color: #0056b3;
+}
+
+
+.new-post-link {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.new-post-link .btn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.new-post-link .btn:hover {
+  background-color: #218838;
+}

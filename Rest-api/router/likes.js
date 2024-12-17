@@ -5,6 +5,6 @@ const { carsController} = require('../controllers');
 
 // middleware that is specific to this router
 
-router.put('/cars/:carId/like', auth(), carsController.likeCar);
+router.put('/:carId/like', auth(), carsController.likeCar);
 
 module.exports = router

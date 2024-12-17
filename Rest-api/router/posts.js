@@ -5,6 +5,14 @@ const { postController } = require('../controllers');
 
 // middleware that is specific to this router
 
-router.get('/', postController.getLatestsPosts);
+router.get('/', postController.getAllPosts);
+router.post('/', auth(), postController.createPost);
+router.get('/:id', postController.getPostById);
+router.post('/:postId/comments', auth(), postController.addComment);
+router.get('/:postId/comments', postController.getComments);
+router.get('/api/posts/:id', postController.getPost);
+router.post('/api/posts/:id/comments', postController.addComment);
+
+
 
 module.exports = router
