@@ -6,7 +6,7 @@ const { carsController } = require('../controllers');
 // Routes for cars
 router.get('/', carsController.getAllCars); 
 router.post('/api/cars/:carId/like', auth(), carsController.likeCar);
-router.get('/user/:userId', carsController.getCarsByUserId);
+router.get('/user/:userId', auth(), carsController.getCarsByUserId);
 router.post('/', auth(), carsController.createCar); 
 router.put('/:carId/edit', auth(), carsController.editCar); 
 router.delete('/:carId', auth(), carsController.deleteCar);

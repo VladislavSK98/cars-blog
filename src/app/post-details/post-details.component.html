@@ -1,6 +1,6 @@
 <div class="post-details-container">
     <div class="post-header">
-      <h1>{{ post.title }}</h1>
+      <h1>{{ post?.title }}</h1>
       <p><strong>By:</strong> {{ post.userId.username }}</p>
     </div>
   
@@ -11,15 +11,18 @@
     <div class="comments-section">
       <h3>Comments</h3>
       <div *ngFor="let comment of comments" class="comment-item">
-        <p class="comment-author">{{ comment.userId.username }}:</p>
+        <div class="comment-header">
+          <span class="comment-author">{{ comment.userId.username }}</span>
+          <span class="comment-time">{{ comment.created_at | date }}</span>
+        </div>
         <p class="comment-text">{{ comment.text }}</p>
-        <p class="comment-time">{{ comment.created_at | date }}</p>
       </div>
   
       <div class="comment-form">
         <textarea [(ngModel)]="commentText" placeholder="Add a comment..."></textarea>
-        <button (click)="onSubmitComment()">Submit Comment</button>
+        <button [disabled]="!commentText.trim()" (click)="onSubmitComment()">Submit Comment</button>
       </div>
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
     </div>
   </div>
   

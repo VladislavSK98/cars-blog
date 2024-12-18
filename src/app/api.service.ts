@@ -73,20 +73,20 @@ export class ApiService {
     return this.http.get<Car>(`/api/cars/${carId}`);
   }
 
-  // Добавяне на нови методи за коментари
-
-  // Получаване на коментари за даден пост
   getComments(postId: string): Observable<any[]> {
     return this.http.get<any[]>(`/api/posts/${postId}/comments`);
   }
 
-  getPost(postId: string): Observable<any> {
+  getPost(postId: string): Observable<Post> {
     return this.http.get<any>(`/api/posts/${postId}`);
   }
-  
 
-  // Добавяне на нов коментар към даден пост
-  addComment(comment: { text: string; postId: string }): Observable<any> {
-    return this.http.post<any>(`/api/posts/${comment.postId}/comments`, { text: comment.text });
+  addComment(comment: { text: string; postId: string; userId: string }): Observable<any> {
+    return this.http.post<any>(`/api/posts/${comment.postId}/comments`, {
+      text: comment.text,
+      userId: comment.userId
+    });
   }
+  
+  
 }

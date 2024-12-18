@@ -11,7 +11,6 @@ router.get('/:id', postController.getPostById);
 router.post('/:postId/comments', auth(), postController.addComment);
 router.get('/:postId/comments', postController.getComments);
 router.get('/api/posts/:id', postController.getPost);
-router.post('/api/posts/:id/comments', postController.addComment);
 
 
 

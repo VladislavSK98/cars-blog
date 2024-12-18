@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { UserForAuth } from '../types/user';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 @Injectable({
@@ -18,7 +19,7 @@ export class UserService implements OnDestroy {
     return !!this.user;
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.userSubscription = this.user$.subscribe((user) => {
       this.user = user;
     });
@@ -27,7 +28,12 @@ export class UserService implements OnDestroy {
   login(email: string, password: string) {
     return this.http
       .post<UserForAuth>('/api/login', { email, password })
-      .pipe(tap((user) => this.user$$.next(user)));
+      .pipe(
+        tap((user) => {
+          this.user$$.next(user);
+          this.router.navigate(['/home']);  
+        })
+      );
   }
 
   register(
@@ -79,6 +85,10 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  getCurrentUserId(): string | null {
+    return this.user?._id || null; // Връща `null`, ако няма потребител
+  }
+  
   ngOnDestroy(): void {
     this.userSubscription?.unsubscribe();
   }

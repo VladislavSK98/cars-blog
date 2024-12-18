@@ -7,7 +7,7 @@
 h2 {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .car-list {
@@ -15,6 +15,7 @@ h2 {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-around;
+  margin-bottom: 40px;
 }
 
 .car-card {
@@ -26,6 +27,12 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .car-info {
@@ -64,25 +71,35 @@ h2 {
   background-color: #c82333;
 }
 
-.car-form {
+.car-actions .btn-details {
+  background-color: #28a745;
+}
+
+.car-actions .btn-details:hover {
+  background-color: #218838;
+}
+
+/* Нови стилове за форма за добавяне на кола */
+.add-car-form {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
 }
 
-.car-form h3 {
+.add-car-form h3 {
   margin-bottom: 15px;
   font-size: 1.5rem;
 }
 
-.car-form label {
+.add-car-form label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.car-form input {
+.add-car-form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -91,12 +108,12 @@ h2 {
   font-size: 1rem;
 }
 
-.car-form input:focus {
+.add-car-form input:focus {
   border-color: #007BFF;
   outline: none;
 }
 
-.car-form button {
+.add-car-form button {
   width: 100%;
   padding: 10px;
   background-color: #007BFF;
@@ -107,22 +124,6 @@ h2 {
   cursor: pointer;
 }
 
-.car-actions button {
-  background-color: #dc3545;
-}
-
-.car-actions button:hover {
-  background-color: #c82333;
-}
-
-.car-actions .btn-details {
-  background-color: #28a745;
-}
-
-.car-actions .btn-details:hover {
-  background-color: #218838;
-}
-
-.car-form button:hover {
+.add-car-form button:hover {
   background-color: #0056b3;
 }

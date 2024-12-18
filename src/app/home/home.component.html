@@ -5,6 +5,28 @@
       Explore, share, and discuss your passion for cars. Publish your opinions,
       share your rides, and engage with other car enthusiasts.
     </p>
+    
+    <div class="blog-cards">
+      <div class="card">
+        <img src="assets/images/car1.jpg" alt="car 1">
+        <h3>Latest Car Reviews</h3>
+        <p>Read the latest reviews of your favorite car models!</p>
+        <a routerLink="/blog" class="btn">Explore Reviews</a>
+      </div>
+      <div class="card">
+        <img src="../../assets/images/car2.jpg" alt="car image">
+        <h3>Car Maintenance Tips</h3>
+        <p>Get expert tips for maintaining your ride in top shape.</p>
+        <a routerLink="/blog" class="btn">Get Tips</a>
+      </div>
+      <div class="card">
+        <img src="assets/images/car3.jpg" alt="car 3">
+        <h3>Join the Community</h3>
+        <p>Share your ride and interact with car lovers worldwide.</p>
+        <a routerLink="/cars" class="btn">See Garage</a>
+      </div>
+    </div>
+
     <div *ngIf="!isLoggedIn" class="auth-links">
       <a routerLink="/login" class="btn">
         <i class="fas fa-sign-in-alt"></i> Login

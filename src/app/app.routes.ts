@@ -24,7 +24,7 @@ export const routes: Routes = [
   // Start - User routing
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   // End - User routing
 
   // Start - Theme routing
@@ -49,11 +49,11 @@ export const routes: Routes = [
   },
   // End - Theme routing
 
-  { path: 'my-garage', component: MyGarageComponent},
-  { path: 'blog', component: BlogComponent },
+  { path: 'my-garage', component: MyGarageComponent, canActivate: [AuthGuard]},
+  { path: 'blog', component: BlogComponent, },
   { path: 'add-post', component: NewPostComponent, canActivate: [AuthGuard] },
   { path: 'cars', component: CarsComponent },
-  { path: 'cars/:carId/edit', component: EditCarComponent},
+  { path: 'cars/:carId/edit', component: EditCarComponent, canActivate: [AuthGuard]},
   { path: 'cars/:carId/details', component: CarDetailsComponent },
   { path: 'cars/:id', component: CarDetailsComponent},
   { path: 'blog/:id', component: PostDetailsComponent },

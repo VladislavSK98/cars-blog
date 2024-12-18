@@ -142,10 +142,10 @@ function getPost(req, res, next) {
 }
 
 function addComment(req, res, next) {
-    const { id } = req.params;
+    const { postId } = req.params; // Промяна тук
     const { text } = req.body;
 
-    postModel.findById(id)
+    postModel.findById(postId) // Използвай postId
       .then(post => {
         if (!post) {
           return res.status(404).json({ message: 'Post not found' });
@@ -158,6 +158,7 @@ function addComment(req, res, next) {
       .then(updatedPost => res.status(200).json(updatedPost))  // Върни актуализираната публикация
       .catch(next);
 }
+
 
 function getComments(req, res, next) {
     const { postId } = req.params;
