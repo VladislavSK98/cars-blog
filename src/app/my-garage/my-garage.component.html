@@ -5,6 +5,7 @@
   <div class="car-list">
     <div *ngFor="let car of cars" class="car-card">
       <div class="car-info">
+        <img [src]="car.imageUrl || 'assets/images/default-car.jpg'" alt="Car Image" class="car-image" />
         <p><strong>Make:</strong> {{ car.make }}</p>
         <p><strong>Model:</strong> {{ car.model }}</p>
         <p><strong>Year:</strong> {{ car.year }}</p>
@@ -38,6 +39,9 @@
 
       <label for="color">Color:</label>
       <input type="text" id="color" [(ngModel)]="newCar.color" name="color" required />
+
+      <label for="imageUrl">Car Image URL:</label>
+      <input type="text" id="imageUrl" [(ngModel)]="newCar.imageUrl" name="imageUrl" placeholder="Enter image URL" />
 
       <button type="submit">Add Car</button>
     </form>

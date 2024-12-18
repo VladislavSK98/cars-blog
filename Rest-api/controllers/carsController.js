@@ -1,7 +1,7 @@
 const { userModel, carModel } = require('../models');
 
-function newCar(make, model, year, userId, power, color) {
-    return carModel.create({ make, model, year, userId, power, color })
+function newCar(make, model, year, userId, power, color, imageUrl) {
+    return carModel.create({ make, model, year, userId, power, color, imageUrl })
         .then(car => {
             return userModel.updateOne(
                 { _id: userId },
@@ -35,21 +35,21 @@ function getAllCars(req, res, next) {
 
 function createCar(req, res, next) {
     const { _id: userId } = req.user;
-    const { make, model, year, power, color } = req.body;
+    const { make, model, year, power, color, imageUrl } = req.body;  
 
-    newCar(make, model, year, userId, power, color)
+    newCar(make, model, year, userId, power, color, imageUrl)  
         .then(car => res.status(201).json(car))
         .catch(next);
 }
 
 function editCar(req, res, next) {
     const { carId } = req.params;
-    const { make, model, year, power, color } = req.body;
+    const { make, model, year, power, color, imageUrl } = req.body;
     const { _id: userId } = req.user;
 
     carModel.findOneAndUpdate(
         { _id: carId, userId },
-        { make, model, year, power, color },
+        { make, model, year, power, color, imageUrl },
         { new: true }
     )
         .then(updatedCar => {
@@ -83,16 +83,16 @@ function deleteCar(req, res, next) {
 function getCarDetails(req, res, next) {
     const { carId } = req.params;
 
-    carModel.findById(carId)  // Намираме колата по ID
+    carModel.findById(carId)  
         .then(car => {
             if (car) {
-                // Добавяме броя на харесванията в обекта на колата
+                
                 const carWithLikes = {
                     ...car.toObject(),
-                    likesCount: car.likes.length,  // Броя на харесванията
+                    likesCount: car.likes.length,  
                 };
 
-                res.status(200).json(carWithLikes);  // Връщаме колата с броя на харесванията
+                res.status(200).json(carWithLikes);  
             } else {
                 res.status(404).json({ message: 'Car not found' });
             }
@@ -100,18 +100,6 @@ function getCarDetails(req, res, next) {
         .catch(next);
 }
 
-// function likeCar(req, res, next) {
-//     const { carId } = req.params;
-//     const { _id: userId } = req.user;
-
-//     carModel.updateOne(
-//         { _id: carId },
-//         { $addToSet: { likes: userId } },
-//         { new: true }
-//     )
-//         .then(() => res.status(200).json({ message: 'Car liked successfully!' }))
-//         .catch(next);
-// }
 
 function likeCar(req, res, next) {
     const { carId } = req.params; 

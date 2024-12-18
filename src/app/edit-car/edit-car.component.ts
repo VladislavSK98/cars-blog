@@ -25,6 +25,7 @@ export class EditCarComponent {
     color: '',
     userId: {} as User,
     owner: '',
+    imageUrl: '',
     price: 0
   };
   isLoading: boolean = true;

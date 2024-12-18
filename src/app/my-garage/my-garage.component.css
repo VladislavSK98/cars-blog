@@ -26,7 +26,7 @@ h2 {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center; /* Центрираме съдържанието на картата */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -37,10 +37,22 @@ h2 {
 
 .car-info {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрираме информацията на колата */
+}
+
+.car-info img {
+  width: 100%; /* Правим изображението толкова широко, колкото картата */
+  height: auto; /* Поддържаме пропорциите на изображението */
+  border-radius: 8px;
+  object-fit: cover; /* Запълваме картата със снимка, като я изрязваме пропорционално */
+  margin-bottom: 10px;
 }
 
 .car-info p {
   margin: 5px 0;
+  text-align: center; /* Центрираме текста */
 }
 
 .car-actions {

@@ -12,4 +12,5 @@ export interface Car {
   owner: string;
   price: number;
   likesCount?: number;
+  imageUrl: string; 
 }

@@ -33,7 +33,7 @@ export class CarsComponent {
     this.carService.likeCar(carId).subscribe({
       next: (response) => {
         console.log('Car liked successfully', response);
-        this.loadCars(); // Презареди списъка с коли
+        this.loadCars(); 
       },
       error: (err) => {
         console.error('Error liking the car', err);

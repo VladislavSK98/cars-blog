@@ -4,6 +4,9 @@
   <h1 class="cars-title">Cars</h1>
   <div class="cars-grid">
     <div *ngFor="let car of cars" class="car-card">
+      <div class="car-image">
+        <img *ngIf="car.imageUrl" [src]="car.imageUrl" alt="{{ car.make }} {{ car.model }}" />
+      </div>
       <h2 class="car-title">{{ car.make }} {{ car.model }}</h2>
       <p class="car-details">Horsepower: {{ car.power }}</p>
       <p class="car-details">Color: {{ car.color }}</p>

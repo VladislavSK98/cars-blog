@@ -27,6 +27,7 @@ export class MyGarageComponent implements OnInit {
     color: '',
     userId: {} as User,  
     owner: '',
+    imageUrl: '',
     price: 0,
   };
 
@@ -55,17 +56,16 @@ export class MyGarageComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.newCar.make && this.newCar.model && this.newCar.year && this.userId && this.newCar.color && this.newCar.power) {
+    if (this.newCar.make && this.newCar.model && this.newCar.year && this.userId && this.newCar.color && this.newCar.power && this.newCar.imageUrl) {
       this.newCar.userId = { _id: this.userId } as User;  
       this.carService.addCar(this.newCar).subscribe((car) => {
         this.cars.push(car);
-        this.newCar = { id: '', _id: '', make: '', model: '', year: '', power: '', color: '', userId: {} as User, owner: '', price: 0 }; 
+        this.newCar = { id: '', _id: '', make: '', model: '', year: '', power: '', color: '', userId: {} as User, owner: '', imageUrl: '' ,price: 0 }; 
       });
     }
   }
 
   deleteCar(carId: string) {
-    // Изтриваме автомобила
     if (confirm('Are you sure you want to delete this car?')) {
       this.carService.deleteCar(carId).subscribe(() => {
         this.cars = this.cars.filter(car => car._id !== carId);  
